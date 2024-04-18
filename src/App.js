@@ -7,12 +7,8 @@ import Footer from "./components/Footer";
 
 
 import "./App.css";
-import { useStateValue } from "./StateProvider";
-
 
 function App() {
-	const [{ user, basket }, dispatch] = useStateValue();
-
 	return (
 		<div className="App">
 			<Router>
