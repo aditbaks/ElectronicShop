@@ -2,13 +2,23 @@ import React from "react";
 import "./Subtotal.css";
 import CurrencyFormat from "react-currency-format";
 import { useStateValue } from "../StateProvider";
-import { getBasketTotal } from "../reducer";
-import { useHistory } from "react-router-dom";
+import {getBasketTotal} from "../reducer";
+
 
 function Subtotal() {
-	const history = useHistory();
 	const [{ basket }, dispatch] = useStateValue();
 	console.log(basket);
+
+	const checkout = () => {
+		if (basket.length !== 0) {
+			alert("Purchase successful !");
+			dispatch({
+				type: "EMPTY_BASKET",
+			});
+		} else {
+			alert("Please add at least 1 item to make a purchase");
+		}
+	};
 
 	return (
 		<div className="subtotal">
@@ -28,13 +38,7 @@ function Subtotal() {
 			/>
 
 			<button
-				onClick={(e) => {
-					if (basket.length !== 0) {
-						alert("Purchase successful !");
-					} else {
-						alert("Please add at least 1 item to make a purchase");
-					}
-				}}
+				onClick={checkout}
 			>
 				Proceed to checkout
 			</button>
